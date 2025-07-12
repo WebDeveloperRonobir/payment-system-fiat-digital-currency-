@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
+    .payment-container { max-width: 400px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h2 { text-align: center; }
+    label { display: block; margin: 10px 0 5px; }
+    input, select, button { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 15px; }
+    button { background-color: #28a745; color: white; border: none; font-weight: bold; cursor: pointer; }
+    button:hover { background-color: #218838; }
+  </style>
+</head>
+<body>
+
+<div class="payment-container">
+  <h2>Make a Payment</h2>
+  
+  <form id="paymentForm">
+    <label for="amount">Amount (USD)</label>
+    <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+
+    <label for="paymentMethod">Select Payment Method</label>
+    <select id="paymentMethod" name="paymentMethod" required>
+      <option value="">-- Select --</option>
+      <option value="stripe">Credit/Debit Card (Stripe)</option>
+      <option value="coinbase">Crypto Payment (Coinbase)</option>
+    </select>
+
+    <button type="submit">Pay Now</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('paymentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const amount = document.getElementById('amount').value;
+    const method = document.getElementById('paymentMethod').value;
+
+    if (method === 'stripe') {
+      // Redirect to Stripe Checkout (Example URL)
+      window.location.href = 'https://buy.stripe.com/test_checkout_link';
+    } else if (method === 'coinbase') {
+      // Redirect to Coinbase Commerce Checkout (Example URL)
+      window.location.href = 'https://commerce.coinbase.com/checkout/sample-checkout-id';
+    } else {
+      alert('Please select a valid payment method.');
+    }
+  });
+</script>
+
+</body>
+</html>
